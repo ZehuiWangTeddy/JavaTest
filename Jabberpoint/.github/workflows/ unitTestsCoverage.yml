@@ -1,0 +1,32 @@
+name: Unit Tests and Coverage
+
+on:
+  push:
+    branches: [ "main", "development", "test", "acceptance" ]
+  pull_request:
+    branches: [ "main", "development", "test", "acceptance" ]
+
+jobs:
+  test-and-coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 19
+
+      - name: Build with Maven and Run Tests
+        run: mvn clean verify
+
+      - name: Generate JaCoCo Report
+        run: mvn jacoco:report
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: target/site/jacoco
