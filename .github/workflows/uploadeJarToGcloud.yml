@@ -41,6 +41,7 @@ jobs:
       - name: Authenticate with Google Cloud Storage
         run: gcloud auth activate-service-account --key-file=${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
+
       # Upload file to Google Cloud Storage
       - name: Upload file to Google Cloud Storage
         run: gsutil cp target/*.jar gs://japperpoint_accepentance/testFolder/
