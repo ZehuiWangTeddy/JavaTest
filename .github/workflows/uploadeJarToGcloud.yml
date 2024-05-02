@@ -27,8 +27,8 @@ jobs:
       - name: Build with Maven
         run: mvn clean verify
 
-            #      - name: Zip report directory
-            #        run: zip -r jabberpoint.zip target/*.jar
+      #      - name: Zip report directory
+      #        run: zip -r jabberpoint.zip target/*.jar
 
       - name: Upload to G-Drive
         uses: adityak74/google-drive-upload-git-action@main
@@ -38,4 +38,5 @@ jobs:
           folderId: ${{ secrets.folderId }}
           name: "Java.jar"
           overwrite: "true" # optional boolean
+
 
