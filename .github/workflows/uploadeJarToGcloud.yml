@@ -33,9 +33,9 @@ jobs:
       - name: Upload to G-Drive
         uses: adityak74/google-drive-upload-git-action@main
         with:
-          credentials: ${{ secrets.credentials }}
+          credentials: ${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}
           filename: "target/*.jar"
-          folderId: ${{ secrets.folderId }}
+          folderId: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
           name: "Java.jar"
           overwrite: "true" # optional boolean
 
