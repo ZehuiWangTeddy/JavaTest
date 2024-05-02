@@ -1,0 +1,20 @@
+name: Authenticate with Google Cloud
+
+on:
+  push:
+    branches: [ "main", "development", "test", "acceptance" ]
+  pull_request:
+    branches: [ "main", "development", "test", "acceptance" ]
+
+jobs:
+  authenticate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Authenticate with Google Cloud
+        run: |
+          gcloud auth activate-service-account --key-file="${{ github.workspace }}/credentials/google-cloud-key.json"
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/credentials/google-cloud-key.json
