@@ -67,20 +67,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          workload_identity_provider: 'projects/501528196522/locations/global/workloadIdentityPools/javatest/providers/117754008959506789521'
-          service_account: 'testjava@warm-bonfire-418221.iam.gserviceaccount.com'
-          credentials: ${{ secrets.GOOGLE_CREDENTIALS }}
-
       - name: Upload File to GCS
         uses: google-github-actions/upload-cloud-storage@v2
         with:
           path: 'target/JabberPoint-1.0-SNAPSHOT.jar'
           destination: 'japperpoint_accepentance/testFolder'
           override: true
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
 
 #      - id: 'auth'
 #        uses: 'google-github-actions/auth@v2'
