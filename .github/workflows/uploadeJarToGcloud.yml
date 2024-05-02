@@ -70,7 +70,7 @@ jobs:
       - name: Upload File to GCS
         uses: google-github-actions/upload-cloud-storage@v2
         with:
-          path: 'target/*.jar'
+          path: 'target/JabberPoint-1.0-SNAPSHOT.jar'
           destination: 'japperpoint_accepentance/testFolder'
           override: true
 
