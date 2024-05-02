@@ -1,4 +1,4 @@
-name: Publish to Google Drive
+name: Publish to Google cloud
 on:
   push:
     branches: [ "acceptance" ]
@@ -30,13 +30,28 @@ jobs:
       #      - name: Zip report directory
       #        run: zip -r jabberpoint.zip target/*.jar
 
-      - name: Upload to G-Drive
-        uses: adityak74/google-drive-upload-git-action@main
+      # Set up Google Cloud SDK
+      - name: Set up Google Cloud SDK
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
         with:
-          credentials: ${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}
-          filename: "target/*.jar"
-          folderId: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
-          name: "Java.jar"
-          overwrite: "true" # optional boolean
+          version: '372.0.0'
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
+      # Authenticate with Google Cloud Storage
+      - name: Authenticate with Google Cloud Storage
+        run: gcloud auth activate-service-account --key-file=${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
+      # Upload file to Google Cloud Storage
+      - name: Upload file to Google Cloud Storage
+        run: gsutil cp target/*.jar gs://japperpoint_accepentance/testFolder/
+#      - name: Upload to Google cloud
+#        uses: adityak74/google-drive-upload-git-action@main
+#        with:
+#          credentials: ${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}
+#          filename: "target/*.jar"
+#          folderId: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
+#          name: "Java.jar"
+#          overwrite: "true" # optional boolean
 
 
