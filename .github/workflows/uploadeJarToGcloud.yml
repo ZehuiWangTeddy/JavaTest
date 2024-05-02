@@ -89,7 +89,7 @@ jobs:
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.G_D_CREDENTIALS }}
-          filename: "target/JabberPoint-1.0-SNAPSHOT.jar"
+          filename: "target/*.jar"
           folderId: ${{ secrets.FOLDER_ID }}
           name: "Java.jar"
           overwrite: "true" # optional boolean
