@@ -31,12 +31,11 @@ jobs:
       #        run: zip -r jabberpoint.zip target/*.jar
 
       # Set up Google Cloud SDK
-      - name: Set up Google Cloud SDK
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
-        with:
-          version: '372.0.0'
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      - name: Install Google Cloud SDK
+        run: |
+          curl https://sdk.cloud.google.com | bash
+          exec -l $SHELL
+          gcloud init
 
       # Authenticate with Google Cloud Storage
       - name: Authenticate with Google Cloud Storage
