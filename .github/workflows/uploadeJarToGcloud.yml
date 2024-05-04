@@ -26,4 +26,3 @@ jobs:
 
       - name: 'Use gcloud CLI'
         run: 'gcloud storage cp target/Jabberpoint-1.0-SNAPSHOT.jar gs://japperpoint_accepentance/testFolder'
-        overwrite: "true"
