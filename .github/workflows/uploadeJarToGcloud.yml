@@ -25,4 +25,4 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v2'
 
       - name: 'Use gcloud CLI'
-        run: 'gcloud storage cp target/*.jar gs://japperpoint_accepentance/testFolder'
+        run: 'gcloud storage cp --force target/*.jar gs://japperpoint_accepentance/testFolder'
