@@ -6,12 +6,12 @@ import com.nhlstenden.JabberPoint.presentation.Presentation;
 import org.junit.jupiter.api.Test;
 
 public class ReloadCommandTest {
-  @Test
-  public void testExecute_assertDoesNotThrow_noThrownException() {
-    Presentation presentation = new Presentation();
+    @Test
+    public void testExecute_assertDoesNotThrow_noThrownException() {
+        Presentation presentation = new Presentation();
 
-    ReloadCommand reloadCommand = new ReloadCommand(presentation);
+        ReloadCommand reloadCommand = new ReloadCommand(presentation);
 
-    assertDoesNotThrow(reloadCommand::execute);
-  }
+        assertDoesNotThrow(reloadCommand::execute);
+    }
 }
